@@ -17,9 +17,12 @@ import person.grafie.unitest.demo.bean.UserInfoBean;
 import person.grafie.unitest.demo.dao.UserInfoDao;
 import person.grafie.unitest.demo.domain.UserInfo;
 import person.grafie.unitest.demo.manager.UserInfoManager;
+import static org.mockito.Mockito.*;
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doReturn;
 
@@ -49,6 +52,9 @@ public class UserInfoBeanManagerImplTest {
 
     @Test
     public void saveUserInfo_case1() throws Exception {
+        HttpServletRequest httpServletRequest = mock(HttpServletRequest.class);
+        when(httpServletRequest.getParameter("hello")).thenReturn("world");
+        System.out.println(httpServletRequest.getParameter("hello"));
         //step1 准备数据和动作
         doReturn(1).when(userInfoDao).saveUserInfoBean(any(UserInfoBean.class));
 
